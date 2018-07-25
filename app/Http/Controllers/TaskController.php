@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('tasks.index',[
             'tasks' => Task::all()
@@ -76,12 +76,10 @@ class TaskController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $task = Task::findOrFail($id);
         $task->delete();
