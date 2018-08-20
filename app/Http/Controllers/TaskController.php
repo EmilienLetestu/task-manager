@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -27,7 +28,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -38,7 +39,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Task::create($request->all());
+
+        return redirect(route('tasks.index'));
     }
 
     /**
@@ -49,7 +52,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -60,7 +63,10 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('tasks.edit',[
+                'task' => Task::findOrFail($id)
+            ]
+        );
     }
 
     /**
@@ -72,7 +78,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+
+        return redirect(route('tasks.index'));
     }
 
     /**
