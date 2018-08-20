@@ -37,7 +37,7 @@
                         <a href=""><i class="fas fa-{{ $task->done === 1 ? 'check' : 'times' }}"></i></a>
                     </td>
                     <td class="centered-table-cell">
-                        {{ $task->dead_line }}
+                        {{ date('d-m-Y', strtotime($task->dead_line)) }}
                     </td>
                     <td class="centered-table-cell">
                         <a class="btn btn-primary" href="{{ route('tasks.edit', $task) }}"><i class="fas fa-pen"></i></a>
