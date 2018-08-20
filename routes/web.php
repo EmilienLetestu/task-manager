@@ -59,7 +59,8 @@ Route::put('/tasks/{task}', [
     'uses'       => 'TaskController@update',
     'middleware' => 'roles',
     'roles'      => ['Manager', 'Admin']
-]);
+])
+->name('tasks.update');
 
 Route::delete('/tasks/{task}', [
     'uses'       => 'TaskController@destroy',
