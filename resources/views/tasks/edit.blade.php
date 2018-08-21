@@ -2,7 +2,10 @@
 
     @section('content')
 
+        @include('error')
+
         <h1>Modifier la tâche</h1>
+
 
         {!! Form::open(['method' => 'put', 'url' => route('tasks.update', $task->id)]) !!}
         <div class="form-group">
