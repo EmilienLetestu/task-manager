@@ -39,6 +39,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, Task::$rules);
+
         Task::create($request->all());
 
         return redirect(route('tasks.index'));
@@ -78,7 +80,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, Task::$rules);
+
         $task = Task::findOrFail($id);
+
         $task->update($request->all());
 
         return redirect(route('tasks.index'));
@@ -91,6 +96,7 @@ class TaskController extends Controller
     public function destroy($id): RedirectResponse
     {
         $task = Task::findOrFail($id);
+
         $task->delete();
 
         return redirect(route('tasks.index'));
